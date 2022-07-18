@@ -1,4 +1,12 @@
-import { Button, Card, InputGroup, Intent, Tooltip } from "@blueprintjs/core";
+import {
+  Button,
+  Card,
+  InputGroup,
+  Intent,
+  Tooltip,
+  Toaster,
+  Position,
+} from "@blueprintjs/core";
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
@@ -12,8 +20,24 @@ export default function Login() {
   const [retypePassword, setRetypePassword] = useState("");
 
   const signup = async () => {
-    if (!name || !email || !password || !retypePassword) return;
-    if (password !== retypePassword) return;
+    const AppToaster = Toaster.create({
+      className: "code-toaster",
+      position: Position.TOP,
+    });
+
+    if (!name || !email || !password || !retypePassword) {
+      AppToaster.show({
+        message: "All fields are required!",
+        intent: "warning",
+      });
+      return;
+    }
+    if (password !== retypePassword) {
+      AppToaster.show({
+        message: "Passwords doesn't match!",
+        intent: "danger",
+      });
+    }
 
     fetch("/api/signup", {
       method: "POST",
@@ -21,7 +45,12 @@ export default function Login() {
       body: JSON.stringify({ name, email, password }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => {
+        AppToaster.show({
+          message: res.message,
+          intent: res.isError ? "warning" : "primary",
+        });
+      })
       .catch((err) => console.log(err));
   };
 
@@ -91,7 +120,7 @@ export default function Login() {
           className="my-4 w-full"
         />
         <p>
-          Already have an account,{" "}
+          Already have an account?{" "}
           <Link href="/login">
             <a className="text-blue-500">Login Here</a>
           </Link>

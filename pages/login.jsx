@@ -1,4 +1,12 @@
-import { Button, Card, InputGroup, Intent, Tooltip } from "@blueprintjs/core";
+import {
+  Button,
+  Card,
+  InputGroup,
+  Intent,
+  Tooltip,
+  Toaster,
+  Position,
+} from "@blueprintjs/core";
 import { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
@@ -10,6 +18,11 @@ export default function Login() {
   const [password, setPassword] = useState("guest-pass");
 
   const login = async () => {
+    const AppToaster = Toaster.create({
+      className: "code-toaster",
+      position: Position.TOP,
+    });
+
     if (!email || !password) return;
     fetch("/api/login", {
       method: "POST",
@@ -17,8 +30,12 @@ export default function Login() {
       body: JSON.stringify({ email, password }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        AppToaster.show({ message: res.message, intent: "primary" });
+      })
+      .catch((err) => {
+        AppToaster.show({ message: err.message, intent: "danger" });
+      });
   };
 
   const lockButton = (
@@ -70,7 +87,7 @@ export default function Login() {
           className="my-4 w-full font-bold"
         />
         <p>
-          Don&apos;t have an account,{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup">
             <a className="text-blue-500">Create Here</a>
           </Link>
