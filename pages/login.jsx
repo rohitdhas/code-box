@@ -1,12 +1,25 @@
 import { Button, Card, InputGroup, Intent, Tooltip } from "@blueprintjs/core";
-import Head from "next/head";
 import { useState } from "react";
+import Link from "next/link";
+import Head from "next/head";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [email, setEmail] = useState("guest@codebox.com");
   const [password, setPassword] = useState("guest-pass");
+
+  const login = async () => {
+    if (!email || !password) return;
+    fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   const lockButton = (
     <Tooltip
@@ -53,13 +66,14 @@ export default function Login() {
           icon="log-in"
           text="Log In"
           large={true}
-          className="my-4 w-full"
+          onClick={login}
+          className="my-4 w-full font-bold"
         />
         <p>
           Don&apos;t have an account,{" "}
-          <a href="/signup" className="text-blue-500">
-            Create Here
-          </a>
+          <Link href="/signup">
+            <a className="text-blue-500">Create Here</a>
+          </Link>
         </p>
       </Card>
     </div>
