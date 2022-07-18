@@ -18,14 +18,18 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const signup = async () => {
+    setIsLoading(true);
     const AppToaster = Toaster.create({
       className: "code-toaster",
       position: Position.TOP,
+      maxToasts: 3,
     });
 
     if (!name || !email || !password || !retypePassword) {
+      setIsLoading(false);
       AppToaster.show({
         message: "All fields are required!",
         intent: "warning",
@@ -33,10 +37,12 @@ export default function Login() {
       return;
     }
     if (password !== retypePassword) {
+      setIsLoading(false);
       AppToaster.show({
         message: "Passwords doesn't match!",
         intent: "danger",
       });
+      return;
     }
 
     fetch("/api/signup", {
@@ -46,10 +52,12 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((res) => {
+        setIsLoading(false);
         AppToaster.show({
           message: res.message,
           intent: res.isError ? "warning" : "primary",
         });
+        window.location.pathname = "/login";
       })
       .catch((err) => console.log(err));
   };
@@ -118,6 +126,7 @@ export default function Login() {
           large={true}
           onClick={signup}
           className="my-4 w-full"
+          loading={isLoading}
         />
         <p>
           Already have an account?{" "}

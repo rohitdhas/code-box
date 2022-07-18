@@ -11,10 +11,12 @@
   "dependencies": {
     "@blueprintjs/core": "^4.6.0",
     "bcrypt": "^5.0.1",
+    "cookies-next": "^2.1.1",
     "mongodb": "^4.8.0",
     "next": "12.2.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",

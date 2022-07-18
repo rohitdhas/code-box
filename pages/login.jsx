@@ -10,14 +10,17 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { setCookie, getCookie } from "cookies-next";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [email, setEmail] = useState("guest@codebox.com");
   const [password, setPassword] = useState("guest-pass");
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = async () => {
+    setIsLoading(true);
     const AppToaster = Toaster.create({
       className: "code-toaster",
       position: Position.TOP,
@@ -31,9 +34,12 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((res) => {
+        setIsLoading(false);
+        setCookie("codebox-token", res.token);
         AppToaster.show({ message: res.message, intent: "primary" });
       })
       .catch((err) => {
+        setIsLoading(false);
         AppToaster.show({ message: err.message, intent: "danger" });
       });
   };
@@ -85,6 +91,7 @@ export default function Login() {
           large={true}
           onClick={login}
           className="my-4 w-full font-bold"
+          loading={isLoading}
         />
         <p>
           Don&apos;t have an account?{" "}
