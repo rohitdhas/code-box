@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [email, setEmail] = useState("guest@codebox.com");
+  const [password, setPassword] = useState("guest-pass");
 
   const lockButton = (
     <Tooltip
@@ -28,13 +30,23 @@ export default function Login() {
       </Head>
       <Card>
         <h2 className="text-2xl font-bold text-center">Log In 🔒</h2>
-        <InputGroup large={true} placeholder="Email" className="my-4" />
+        <InputGroup
+          large={true}
+          placeholder="Email"
+          className="my-4"
+          required
+          onChange={({ target }) => setEmail(target.value)}
+          value={email}
+        />
         <InputGroup
           disabled={disabled}
           large={true}
           placeholder="Password"
           rightElement={lockButton}
           type={showPassword ? "text" : "password"}
+          required
+          onChange={({ target }) => setPassword(target.value)}
+          value={password}
         />
         <Button
           intent="primary"
