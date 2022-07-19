@@ -38,9 +38,11 @@ export default function Login() {
       .then((res) => res.json())
       .then((res) => {
         setIsLoading(false);
-        window.location.pathname = router.query.returnUrl;
         setCookie("codebox-token", res.token);
         AppToaster.show({ message: res.message, intent: "primary" });
+        if (!res.isError) {
+          window.location.pathname = router.query.returnUrl || "/";
+        }
       })
       .catch((err) => {
         setIsLoading(false);
