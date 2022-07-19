@@ -10,7 +10,8 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import { setCookie, getCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,8 @@ export default function Login() {
   const [email, setEmail] = useState("guest@codebox.com");
   const [password, setPassword] = useState("guest-pass");
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   const login = async () => {
     setIsLoading(true);
@@ -35,6 +38,7 @@ export default function Login() {
       .then((res) => res.json())
       .then((res) => {
         setIsLoading(false);
+        window.location.pathname = router.query.returnUrl;
         setCookie("codebox-token", res.token);
         AppToaster.show({ message: res.message, intent: "primary" });
       })
