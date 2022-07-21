@@ -29,6 +29,8 @@ function RouteGuard({ children }) {
 
     if (!token && !publicPaths.includes(path)) {
       setAuthorized(false);
+      delete router.query.returnUrl;
+
       router.push({
         pathname: "/login",
         query: { returnUrl: router.asPath },
