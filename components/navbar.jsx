@@ -13,7 +13,7 @@ import Popup from "./popup";
 import { useRouter } from "next/router";
 import { delete_cookie } from "../utils";
 
-export default function Nav() {
+export default function Nav({ getProjects }) {
   const router = useRouter();
 
   const CreateProjectButton = ({ toggleModal }) => (
@@ -35,7 +35,7 @@ export default function Nav() {
           text="Home"
           onClick={() => router.push({ pathname: "/" })}
         />
-        <Popup ToggleButton={CreateProjectButton} />
+        <Popup getProjects={getProjects} ToggleButton={CreateProjectButton} />
       </NavbarGroup>
       <NavbarGroup align={Alignment.RIGHT}>
         <Button

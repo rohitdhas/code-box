@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { getUser } from "../utils";
 
-export default function Popup({ ToggleButton }) {
+export default function Popup({ ToggleButton, getProjects }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState("");
@@ -46,6 +46,7 @@ export default function Popup({ ToggleButton }) {
     });
     const data = await res.json();
     AppToaster.show({ message: data.message, intent: "success" });
+    getProjects();
     setName("");
     setDescription("");
     setIsLoading(false);
