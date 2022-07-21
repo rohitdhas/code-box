@@ -12,6 +12,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/router";
+import { storeUser } from "../utils";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -41,6 +42,7 @@ export default function Login() {
         setCookie("codebox-token", res.token);
         AppToaster.show({ message: res.message, intent: "primary" });
         if (!res.isError) {
+          storeUser(res.data);
           window.location.pathname = router.query.returnUrl || "/";
         }
       })
