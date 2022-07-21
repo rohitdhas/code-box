@@ -10,8 +10,12 @@ import {
   NavbarHeading,
 } from "@blueprintjs/core";
 import Popup from "./popup";
+import { useRouter } from "next/router";
+import { delete_cookie } from "../utils";
 
 export default function Nav() {
+  const router = useRouter();
+
   const CreateProjectButton = ({ toggleModal }) => (
     <Button
       onClick={toggleModal}
@@ -25,11 +29,23 @@ export default function Nav() {
       <NavbarGroup align={Alignment.LEFT}>
         <NavbarHeading className="text-2xl font-bold">CodeBox 👨‍💻</NavbarHeading>
         <NavbarDivider className="bg-blue-500" />
-        <Button className={Classes.MINIMAL} icon="home" text="Home" />
+        <Button
+          className={Classes.MINIMAL}
+          icon="home"
+          text="Home"
+          onClick={() => router.push({ pathname: "/" })}
+        />
         <Popup ToggleButton={CreateProjectButton} />
       </NavbarGroup>
       <NavbarGroup align={Alignment.RIGHT}>
-        <Button icon="chevron-left" text="Sign Out 👋🏻" />
+        <Button
+          onClick={() => {
+            delete_cookie("codebox-token");
+            router.push({ pathname: "/login" });
+          }}
+          icon="chevron-left"
+          text="Sign Out 👋🏻"
+        />
       </NavbarGroup>
     </Navbar>
   );
