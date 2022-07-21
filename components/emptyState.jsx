@@ -19,7 +19,7 @@ export default function EmptyState({ toggleModal }) {
     <div className="text-base">
       You Don&apos;t have any projets in the list.
       <br />
-      Click the button below to create new project.
+      Click the button below to start a new project.
     </div>
   );
 
