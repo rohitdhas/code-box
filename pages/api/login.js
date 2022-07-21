@@ -1,14 +1,11 @@
 import { connectToDatabase } from "../../lib/mongodb";
 import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
-import { getCookieVal } from "../../utils";
 
 export default async function handler(req, res) {
   let { db } = await connectToDatabase();
   const { email, password } = req.body;
   const token = uuidv4();
-
-  // console.log(getCookieVal(req.headers.cookie, "codebox-token"));
 
   const user = await db.collection("users").findOne({ email });
   await db.collection("tokens").insertOne({ email, token });
@@ -25,6 +22,8 @@ export default async function handler(req, res) {
       }
 
       if (userData) {
+        delete user.password;
+
         res.status(200).json({
           message: "Successfully Logged In!",
           isError: false,
