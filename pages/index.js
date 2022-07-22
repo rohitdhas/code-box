@@ -6,10 +6,12 @@ import { useState, useEffect } from "react";
 import { Card, Button, Icon, Toaster, Position } from "@blueprintjs/core";
 import { getUser } from "../utils";
 import Loader from "../components/loader";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const [projects, setProjects] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     getProjects();
@@ -63,7 +65,7 @@ export default function Home() {
             return (
               <Card
                 elevation={1}
-                className="w-[40%] mx-auto my-4 flex align items-center"
+                className="w-[40%] mx-auto my-4 flex align items-center bg-slate-200"
                 key={project._id}
               >
                 <Card className="mr-6">
@@ -78,7 +80,15 @@ export default function Home() {
                     <Button icon="eye-open" intent="primary" minimal>
                       Preview
                     </Button>
-                    <Button className="mx-2" icon="edit" intent="none" minimal>
+                    <Button
+                      onClick={() =>
+                        router.push({ pathname: `/project/${project._id}` })
+                      }
+                      className="mx-2"
+                      icon="edit"
+                      intent="none"
+                      minimal
+                    >
                       Edit
                     </Button>
                     <Button

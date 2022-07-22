@@ -57,7 +57,9 @@ export default function Login() {
           message: res.message,
           intent: res.isError ? "warning" : "primary",
         });
-        window.location.pathname = "/login";
+        if (!res.isError) {
+          window.location.pathname = "/login";
+        }
       })
       .catch((err) => console.log(err));
   };
