@@ -3,7 +3,6 @@ import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   const { projectId } = req.query;
-  console.log(projectId);
   let { db } = await connectToDatabase();
 
   const doc = await db
