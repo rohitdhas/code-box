@@ -10,12 +10,14 @@ import {
 } from "@blueprintjs/core";
 import { useState } from "react";
 import { getUser } from "../utils";
+import { useRouter } from "next/router";
 
 export default function Popup({ ToggleButton, getProjects }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
+  const router = useRouter();
   const user = getUser();
 
   const handleClose = () => {
@@ -44,13 +46,9 @@ export default function Popup({ ToggleButton, getProjects }) {
       method: "post",
       body: JSON.stringify({ name, description, userId: user._id }),
     });
-    const data = await res.json();
-    AppToaster.show({ message: data.message, intent: "success" });
-    getProjects();
-    setName("");
-    setDescription("");
-    setIsLoading(false);
-    setIsOpen(false);
+    const { data, message } = await res.json();
+    AppToaster.show({ message, intent: "success" });
+    router.push({ pathname: `/project/${data.insertedId}` });
   };
 
   return (
