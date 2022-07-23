@@ -21,6 +21,7 @@ export default async function handler(req, res) {
   const projects = await db
     .collection("projects")
     .find({ user: userId })
+    .sort({ _id: -1 })
     .toArray();
   res.status(200).json({ isError: false, data: projects });
 }
