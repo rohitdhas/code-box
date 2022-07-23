@@ -35,7 +35,11 @@ export default function Nav({ getProjects }) {
           text="Home"
           onClick={() => router.push({ pathname: "/" })}
         />
-        <Popup getProjects={getProjects} ToggleButton={CreateProjectButton} />
+        {getProjects ? (
+          <Popup getProjects={getProjects} ToggleButton={CreateProjectButton} />
+        ) : (
+          <></>
+        )}
       </NavbarGroup>
       <NavbarGroup align={Alignment.RIGHT}>
         <Button
