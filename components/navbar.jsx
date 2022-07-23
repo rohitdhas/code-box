@@ -24,10 +24,12 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
     />
   );
   return (
-    <Navbar className="bg-blue-100">
+    <Navbar style={{ backgroundColor: "#cfe9ff" }}>
       <NavbarGroup align={Alignment.LEFT}>
-        <NavbarHeading className="text-2xl font-bold">CodeBox 👨‍💻</NavbarHeading>
-        <NavbarDivider className="bg-blue-500" />
+        <NavbarHeading style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          CodeBox 👨‍💻
+        </NavbarHeading>
+        <NavbarDivider style={{ backgroundColor: "#1e67a7" }} />
         <Button
           className={Classes.MINIMAL}
           icon="home"
