@@ -67,8 +67,7 @@ export default function Home() {
                 elevation={1}
                 className="w-[40%] mx-auto my-4 flex align items-center"
                 key={project._id}
-                color="red"
-                style={{ backgroundColor: "#cfe9ff" }}
+                style={{ backgroundColor: "#e6f3ff" }}
               >
                 <Card className="mr-6">
                   <Icon icon="code" size={30} intent="primary" />
