@@ -72,7 +72,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
-      <Card>
+      <Card className="w-[400px]">
         <h2 className="text-2xl font-bold text-center">Log In 🔒</h2>
         <InputGroup
           large={true}
@@ -101,7 +101,7 @@ export default function Login() {
           className="my-4 w-full font-bold"
           loading={isLoading}
         />
-        <p>
+        <p className="text-center">
           Don&apos;t have an account?{" "}
           <Link href="/signup">
             <a className="text-blue-500">Create Here</a>
