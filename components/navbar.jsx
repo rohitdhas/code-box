@@ -13,8 +13,9 @@ import Popup from "./popup";
 import { useRouter } from "next/router";
 import { delete_cookie } from "../utils";
 
-export default function Nav({ getProjects }) {
+export default function Nav({ getProjects, previewBtn, editBtn }) {
   const router = useRouter();
+  const { id } = router.query;
 
   const CreateProjectButton = ({ toggleModal }) => (
     <Button
@@ -42,6 +43,32 @@ export default function Nav({ getProjects }) {
         )}
       </NavbarGroup>
       <NavbarGroup align={Alignment.RIGHT}>
+        {previewBtn ? (
+          <Button
+            onClick={() => {
+              router.push({ pathname: `/preview/${id}` });
+            }}
+            icon="eye-open"
+            intent="warning"
+            text="Preview"
+            className="mr-2"
+          />
+        ) : (
+          <></>
+        )}
+        {editBtn ? (
+          <Button
+            onClick={() => {
+              router.push({ pathname: `/project/${id}` });
+            }}
+            icon="edit"
+            intent="warning"
+            text="Edit Project"
+            className="mr-2"
+          />
+        ) : (
+          <></>
+        )}
         <Button
           onClick={() => {
             delete_cookie("codebox-token");

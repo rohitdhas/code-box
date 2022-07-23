@@ -71,7 +71,7 @@ export default function Project() {
 
   return (
     <div>
-      <Nav />
+      <Nav previewBtn={true} />
       <Loader isLoading={isLoading} />
       <div className="flex justify-evenly">
         <Editor title={"HTML"} language="xml" value={html} onChange={setHTML} />

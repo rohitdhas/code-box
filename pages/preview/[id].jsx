@@ -38,7 +38,7 @@ export default function Preview() {
 
   return (
     <div>
-      <Nav />
+      <Nav editBtn={true} />
       <Loader isLoading={isLoading} />
       <iframe
         srcDoc={srcDoc}
