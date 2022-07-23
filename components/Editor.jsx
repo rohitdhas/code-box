@@ -17,17 +17,17 @@ export default function Editor({ title, language, value, onChange }) {
   }
 
   return (
-    <div>
-      <div>{title}</div>
+    <div className="border border-blue-300 mt-4 rounded-md">
+      <div className="font-bold underline px-4 py-2">👨‍💻 {title}</div>
       <Controlled
         onBeforeChange={handleChange}
         value={value}
-        className="w-[33vw] text-[1.1rem]"
+        className="w-[32vw] text-[1.1rem]"
         options={{
           lineWrapping: true,
           lint: true,
           mode: language,
-          lineNumbers: false,
+          lineNumbers: true,
           theme: "material",
         }}
       />
