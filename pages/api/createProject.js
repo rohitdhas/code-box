@@ -9,26 +9,23 @@ export default async function handler(req, res) {
     description,
     user: userId,
     createdAt: new Date(),
-    html: `
-    <div>
-  	  <h2>Welcome to codebox 🚀🔥</h2>	
-	    <button>Click Me</button>
-    </div>
+    html: `<div>
+    <h2>Welcome to codebox 🚀🔥</h2>
+	<button>Click Me</button>
+</div>
     `,
-    css: `
-    div {
-      font-family: sans-serif;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-      align-items: center;
-    }
-    
-    h2 {
-        color: cornflowerblue;
-    }
+    css: `div {
+    font-family: sans-serif;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+h2 {
+    color: cornflowerblue;
+  }
     `,
-    js: `// Your JavaScript Goes here!! 🎈`,
+    js: `// Your JavaScript Goes here!! 🎈\n// Your progress will be automatically saved to Cloud ☁`,
   });
   res
     .status(200)
