@@ -73,11 +73,16 @@ export default function Home() {
                 </Card>
                 <div>
                   <h4 className="text-xl font-bold">{project.name}</h4>
-                  <p>
-                    {project.description.split(" ").slice(0, 20).join(" ")}...
-                  </p>
+                  <p>{project.description.split(" ").slice(0, 20).join(" ")}</p>
                   <div className="mt-2">
-                    <Button icon="eye-open" intent="primary" minimal>
+                    <Button
+                      onClick={() =>
+                        router.push({ pathname: `/preview/${project._id}` })
+                      }
+                      icon="eye-open"
+                      intent="primary"
+                      minimal
+                    >
                       Preview
                     </Button>
                     <Button
