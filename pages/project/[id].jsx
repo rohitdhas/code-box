@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Editor from "../../components/Editor";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Nav from "../../components/navbar";
+import Loader from "../../components/loader";
 
 export default function Project() {
   const router = useRouter();
@@ -9,6 +12,7 @@ export default function Project() {
   const [css, setCSS] = useState("");
   const [js, setJS] = useState("");
   const [srcDoc, setSrcDoc] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -19,6 +23,7 @@ export default function Project() {
         <script>${js}</script>
       </html>
     `);
+      updateProject();
     }, 250);
 
     return () => clearTimeout(timeout);
@@ -38,14 +43,37 @@ export default function Project() {
   }, []);
 
   const getProject = async () => {
+    setIsLoading(true);
+
     const res = await fetch(`/api/getProject?projectId=${id}`);
-    const data = await res.json();
-    console.log(data);
+    const { isError, data } = await res.json();
+    setIsLoading(false);
+
+    if (isError) {
+      router.push({ pathname: "/" });
+    } else {
+      document.title = `Codebox - ${data.name}`;
+      setHTML(data.html);
+      setCSS(data.css);
+      setJS(data.js);
+    }
+  };
+
+  const updateProject = async () => {
+    if (!html && !css && !js) return;
+
+    await fetch("/api/updateProject", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ html, css, js, projectId: id }),
+    });
   };
 
   return (
     <div>
-      <div className="flex justify-between">
+      <Nav />
+      <Loader isLoading={isLoading} />
+      <div className="flex justify-evenly">
         <Editor title={"HTML"} language="xml" value={html} onChange={setHTML} />
         <Editor title={"CSS"} language="css" value={css} onChange={setCSS} />
         <Editor
@@ -55,15 +83,20 @@ export default function Project() {
           onChange={setJS}
         />
       </div>
-      <iframe
-        srcDoc={srcDoc}
-        title="output"
-        sandbox="allow-scripts"
-        frameBorder="0"
-        width="100%"
-        height="100%"
-        className="h-[55vh] mt-4"
-      />
+      <div className="m-4 border border-blue-300 rounded-md">
+        <span className="font-bold underline m-0 p-2 text-slate-800">
+          Preview 🔥
+        </span>
+        <iframe
+          srcDoc={srcDoc}
+          title="output"
+          sandbox="allow-scripts"
+          frameBorder="0"
+          width="100%"
+          height="100%"
+          className="h-[40vh] mt-4"
+        />
+      </div>
     </div>
   );
 }
