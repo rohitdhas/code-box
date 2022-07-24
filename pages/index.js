@@ -92,7 +92,7 @@ export default function Home() {
                       }
                       className="mx-2"
                       icon="edit"
-                      intent="none"
+                      intent="warning"
                       minimal
                     >
                       Edit

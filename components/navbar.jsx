@@ -76,6 +76,7 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
           }}
           icon="chevron-left"
           text="Sign Out 👋🏻"
+          intent="danger"
         />
       </NavbarGroup>
     </Navbar>
