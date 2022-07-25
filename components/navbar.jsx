@@ -50,7 +50,7 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
             }}
             icon="eye-open"
             intent="warning"
-            text="Preview"
+            text="Full Screen Preview"
             className="mr-2"
           />
         ) : (
