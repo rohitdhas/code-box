@@ -34,7 +34,10 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
           className={Classes.MINIMAL}
           icon="home"
           text="Home"
-          onClick={() => router.push({ pathname: "/" })}
+          onClick={() => {
+            if (router.pathname === "/") return;
+            router.push({ pathname: "/" });
+          }}
         />
         {getProjects ? (
           <Popup getProjects={getProjects} ToggleButton={CreateProjectButton} />
