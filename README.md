@@ -1,6 +1,6 @@
 # Code Box
 
-A development platform where anyone can build and websites using HTML, CSS and JS. And show off their work online.
+A development platform where anyone can build websites using HTML, CSS and JS. And show off their work online.
 
 ![Banner](https://raw.githubusercontent.com/rohitdhas/code-box/main/public/banner.png)
 
