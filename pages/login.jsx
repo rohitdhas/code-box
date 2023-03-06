@@ -17,8 +17,8 @@ import { storeUser } from "../utils";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const [email, setEmail] = useState("guest@codebox.com");
-  const [password, setPassword] = useState("guest-pass");
+  const [email, setEmail] = useState("example@log.in");
+  const [password, setPassword] = useState("example");
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -72,7 +72,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
-      <Card className="w-[400px]">
+      <Card className="shadow-2xl shadow-gray-900 rounded-3xl w-[400px]">
         <h2 className="text-2xl font-bold text-center">Log In 🔒</h2>
         <InputGroup
           large={true}
@@ -98,7 +98,7 @@ export default function Login() {
           text="Log In"
           large={true}
           onClick={login}
-          className="my-4 w-full font-bold"
+          className="my-4 w-full font-bold rounded-full"
           loading={isLoading}
         />
         <p className="text-center">
