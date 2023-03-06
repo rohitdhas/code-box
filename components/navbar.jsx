@@ -24,12 +24,13 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
     />
   );
   return (
-    <Navbar style={{ backgroundColor: "#cfe9ff" }}>
+    <Navbar style={{ backgroundColor: "#E2DED0" }}>
       <NavbarGroup align={Alignment.LEFT}>
         <NavbarHeading style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-          CodeBox 👨‍💻
+          CodeSprite 👨‍💻
+
         </NavbarHeading>
-        <NavbarDivider style={{ backgroundColor: "#1e67a7" }} />
+        <NavbarDivider style={{ backgroundColor: "#647C90" }} />
         <Button
           className={Classes.MINIMAL}
           icon="home"
@@ -54,7 +55,7 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
             icon="eye-open"
             intent="warning"
             text="Full Screen Preview"
-            className="mr-2"
+            className="mr-2 rounded-full"
           />
         ) : (
           <></>
@@ -67,7 +68,7 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
             icon="edit"
             intent="warning"
             text="Edit Project"
-            className="mr-2"
+            className="mr-2 rounded-full"
           />
         ) : (
           <></>
@@ -80,6 +81,7 @@ export default function Nav({ getProjects, previewBtn, editBtn }) {
           icon="chevron-left"
           text="Sign Out 👋🏻"
           intent="danger"
+          className="rounded-full"
         />
       </NavbarGroup>
     </Navbar>

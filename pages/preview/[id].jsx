@@ -25,7 +25,7 @@ export default function Preview() {
       router.push({ pathname: "/" });
     } else {
       const { name, html, css, js } = data;
-      document.title = `Codebox Preview - ${name}`;
+      document.title = `CodeSprite Preview - ${name}`;
       setSrcDoc(`
       <html>
         <body>${html}</body>

@@ -13,8 +13,23 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Ubuntu", sans-serif;
+  background-color: #545454;
+  color: #757575;
+}
+
+.white{
+  color: #6a6a6a;
+}
+
+.wht{
+  background-color: white;
+  text-align: center;
 }
 
 * {
   box-sizing: border-box;
 }
+
+
+
+

@@ -12,6 +12,7 @@ export default function EmptyState({ toggleModal }) {
       text="Create New Project"
       icon="plus"
       intent="primary"
+      className="rounded-full"
     />
   );
 

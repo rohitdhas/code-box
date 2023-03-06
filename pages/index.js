@@ -52,7 +52,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Create new codebox to get started!" />
+        <meta name="description" content="Create new CodeSpace to get started!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav getProjects={getProjects} />
@@ -65,9 +65,9 @@ export default function Home() {
             return (
               <Card
                 elevation={1}
-                className="w-[40%] mx-auto my-4 flex align items-center"
+                className="w-[40%] mx-auto my-8 flex align items-center rounded-2xl shadow-xl shadow-gray-800"
                 key={project._id}
-                style={{ backgroundColor: "#e6f3ff" }}
+                style={{ backgroundColor: "#E2DED0" }}
               >
                 <Card className="mr-6">
                   <Icon icon="code" size={30} intent="primary" />

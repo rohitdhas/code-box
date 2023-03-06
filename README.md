@@ -1,6 +1,6 @@
-# Code Box
+# CodeSprite
 
-A development platform where anyone can build websites using HTML, CSS and JS. And show off their work online.
+A Dark theme of Code-Box + updating every time!
 
 ![Banner](https://raw.githubusercontent.com/rohitdhas/code-box/main/public/banner.png)
 
@@ -8,4 +8,3 @@ A development platform where anyone can build websites using HTML, CSS and JS. A
 
 - Public/Private Codeboxes
 - Search users/codeboxes
-- Deploy Codebox

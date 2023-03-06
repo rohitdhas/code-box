@@ -84,7 +84,7 @@ export default function Login() {
       <Head>
         <title>Sign Up</title>
       </Head>
-      <Card className="w-[400px]">
+      <Card className="shadow-2xl shadow-gray-900 rounded-3xl w-[400px]">
         <h2 className="text-2xl font-bold text-center">
           Create New Account 🎈
         </h2>
@@ -127,7 +127,7 @@ export default function Login() {
           text="Create Account"
           large={true}
           onClick={signup}
-          className="my-4 w-full"
+          className="my-4 w-full rounded-full"
           loading={isLoading}
         />
         <p className="text-center">

@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     user: userId,
     createdAt: new Date(),
     html: `<div>
-    <h2>Welcome to codebox 🚀🔥</h2>
+    <h2>Welcome to CodeSprite 🚀🔥</h2>
 	<button>Click Me</button>
 </div>
     `,
@@ -21,6 +21,11 @@ export default async function handler(req, res) {
     flex-direction: column;
     align-items: center;
   }
+
+  body{
+    background-color: aliceblue;
+  }
+  
 h2 {
     color: cornflowerblue;
   }

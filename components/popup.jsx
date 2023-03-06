@@ -77,13 +77,14 @@ export default function Popup({ ToggleButton, getProjects }) {
         <div className={Classes.DIALOG_FOOTER}>
           <div className={Classes.DIALOG_FOOTER_ACTIONS}>
             <Tooltip content="Close this popup.">
-              <Button onClick={handleClose}>Close</Button>
+              <Button className="rounded-full" onClick={handleClose}>Close</Button>
             </Tooltip>
             <Tooltip content="Create Project">
               <Button
                 loading={isLoading}
                 onClick={createProject}
                 intent="primary"
+                className="rounded-full"
               >
                 Create
               </Button>
