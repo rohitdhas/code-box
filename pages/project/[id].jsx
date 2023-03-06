@@ -52,7 +52,7 @@ export default function Project() {
     if (isError) {
       router.push({ pathname: "/" });
     } else {
-      document.title = `Codebox - ${data.name}`;
+      document.title = `CodeSprite - ${data.name}`;
       setHTML(data.html);
       setCSS(data.css);
       setJS(data.js);
@@ -84,9 +84,11 @@ export default function Project() {
         />
       </div>
       <div className="m-4 border border-blue-300 rounded-md">
-        <span className="font-bold underline m-0 p-2 text-slate-800">
+        <div className="wht rounded-md m-4 border">
+        <span className="font-bold underline m-0 p-2 text-slate-800 white">
           Preview 🔥
         </span>
+        </div>
         <iframe
           srcDoc={srcDoc}
           title="output"
